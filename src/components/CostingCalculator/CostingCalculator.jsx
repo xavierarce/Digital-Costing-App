@@ -84,19 +84,19 @@ export const CostingCalculator = ({ editableEstimation }) => {
   const marginPercent = Form.useWatch("margin", form) || 0;
 
   // 💡 Calculate totals
-  const { totalResourceCost, marginEUR, totalProjectCost } = useMemo(() => {
+  const { totalResourceCost, profit, totalProjectCost } = useMemo(() => {
     const total = resources.reduce((sum, resource) => {
       const tjm = Number(resource?.average_daily_rate || 0);
       const time = Number(resource?.time || 0);
       return sum + tjm * time;
     }, 0);
 
-    const margin = (marginPercent / 100) * total;
-    const totalWithMargin = total + margin;
+    const totalWithMargin = total / (1 - marginPercent / 100);
+    const margin = totalWithMargin || 0 - total;
 
     return {
       totalResourceCost: total,
-      marginEUR: margin,
+      profit: margin,
       totalProjectCost: totalWithMargin,
     };
   }, [resources, marginPercent]);
@@ -105,7 +105,7 @@ export const CostingCalculator = ({ editableEstimation }) => {
     const payload = {
       ...values,
       total_resource_cost: totalResourceCost,
-      margin_eur: marginEUR,
+      profit,
       total_project_cost: totalProjectCost,
     };
 
@@ -175,8 +175,8 @@ export const CostingCalculator = ({ editableEstimation }) => {
         </div>
 
         <div style={{ marginBottom: 12 }}>
-          <Text strong>Marge (€) : </Text>
-          <Text>{marginEUR.toFixed(2)} €</Text>
+          <Text strong>Profit (€) : </Text>
+          <Text>{profit.toFixed(2)} €</Text>
         </div>
 
         <div>

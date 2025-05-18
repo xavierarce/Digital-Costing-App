@@ -10,7 +10,7 @@ const fieldsToDisplay = [
   { key: "name", label: "Nom" },
   { key: "margin", label: "Marge (%)" },
   { key: "total_resource_cost", label: "Coût Ressources (€)" },
-  { key: "margin_eur", label: "Marge (€)" },
+  { key: "profit", label: "Profit (€)" },
   { key: "total_project_cost", label: "Coût Total (€)" },
 ];
 
