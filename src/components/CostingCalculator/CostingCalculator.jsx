@@ -15,7 +15,7 @@ import { generateFormFields } from "../utils/generateFormFields";
 const { Option } = Select;
 const { Title, Text } = Typography;
 
-const API_URL = "http://127.0.0.1:5000";
+export const API_URL = "https://digital-costing-api.onrender.com";
 
 export const CostingCalculator = ({ editableEstimation }) => {
   const [form] = Form.useForm();

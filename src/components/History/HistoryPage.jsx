@@ -1,5 +1,6 @@
 import { Card, Col, Row, Typography, Button } from "antd";
 import { CopyOutlined } from "@ant-design/icons";
+import { API_URL } from "../CostingCalculator/CostingCalculator";
 
 import React, { useEffect, useState } from "react";
 
@@ -19,7 +20,7 @@ export const HistoryPage = ({ setEstimationToEdit }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/history") // adjust URL if needed
+    fetch(`${API_URL}/history`) // adjust URL if needed
       .then((res) => {
         console.log(res, "res");
 
