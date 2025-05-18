@@ -55,8 +55,16 @@ export const MainLayout = () => {
           items={items}
         />
       </Sider>
-      <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }}>
+      <Layout
+        style={{ display: "flex", flexDirection: "column", height: "100%" }}
+      >
+        <Header
+          style={{
+            padding: 0,
+            background: colorBgContainer,
+            flex: "0 0 64px", // fix header height (same as button height)
+          }}
+        >
           <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -73,7 +81,7 @@ export const MainLayout = () => {
             padding: 24,
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
-            height: "100%",
+            flex: "1 1 auto", // take the remaining space
             overflow: "auto",
           }}
         >
